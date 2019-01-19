@@ -322,10 +322,10 @@ int main(int argc, char* argv[])
   boost::asio::signal_set signals(ioService, SIGINT, SIGTERM);
   signals.async_wait(boost::bind(&io_service::stop, &ioService));
 
+  openlog(argv[0], LOG_PID | (commandLine.getForeground() ? LOG_PERROR : 0), LOG_USER);
   if (!commandLine.getForeground())
   {
     bool exit = true;
-    openlog(argv[0], LOG_PID, LOG_USER);
     int r = daemonize(commandLine.getPidFileName(), ioService, exit);
     if (exit)
     {
