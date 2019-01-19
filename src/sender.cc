@@ -73,7 +73,9 @@ void Sender::endSend(const boost::system::error_code &error, std::size_t bytesTr
 {
   if (error)
   {
-    throw boost::system::system_error(error);
+    std::ostringstream msg;
+    msg << "send to " << getOutInterface(m_socket.native()) << " failed: " << error.message();
+    throw std::runtime_error(msg.str());
   }
   auto bytesRequested = m_queue.front().getLength();
   if (bytesTransferred != bytesRequested)

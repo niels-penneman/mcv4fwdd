@@ -46,7 +46,9 @@ void Receiver::endReceive(const boost::system::error_code &error, std::size_t le
 {
   if (error)
   {
-    throw boost::system::system_error(error);
+    std::ostringstream msg;
+    msg << "receive from " << m_multicastEndpoint << " failed: " << error.message();
+    throw std::runtime_error(msg.str());
   }
 
   if (length > 0)

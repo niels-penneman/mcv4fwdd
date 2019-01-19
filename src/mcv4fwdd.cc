@@ -333,6 +333,14 @@ int main(int argc, char* argv[])
     }
   }
 
-  ioService.run();
+  try
+  {
+    ioService.run();
+  }
+  catch (const std::runtime_error &e)
+  {
+    syslog(LOG_ERR, "crashed: %s", e.what());
+    return 1;
+  }
   return 0;
 }
