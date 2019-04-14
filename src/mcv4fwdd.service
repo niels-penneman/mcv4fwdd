@@ -1,0 +1,12 @@
+[Unit]
+Description=IPv4 Multicast Forwarding Daemon
+Wants=network-online.target
+After=network.target network-online.target
+
+[Service]
+Type=forking
+ExecStart=/usr/sbin/mcv4fwdd -c /etc/mcv4fwdd.conf -p /var/run/mcv4fwdd.pid
+PIDFile=/var/run/mcv4fwdd.pid
+User=root
+Group=root
+KillSignal=SIGINT

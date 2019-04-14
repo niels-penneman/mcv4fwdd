@@ -29,7 +29,7 @@
 namespace
 {
   constexpr const char CONFIGURATION_FILE[] = "/etc/mcv4fwdd.conf";
-  constexpr const char PID_FILE[] = "/var/run/mcv4fwdd/mcv4fwdd.pid";
+  constexpr const char PID_FILE[] = "/var/run/mcv4fwdd.pid";
 }
 
 

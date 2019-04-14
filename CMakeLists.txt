@@ -89,6 +89,7 @@ add_executable (mcv4fwdd
   ${SRC_DIR}/commandline.cc
   ${SRC_DIR}/forwarder.cc
   ${SRC_DIR}/mcv4fwdd.cc
+  ${SRC_DIR}/mcv4fwdd.service
   ${SRC_DIR}/receiver.cc
   ${SRC_DIR}/router.cc
   ${SRC_DIR}/sender.cc
@@ -103,4 +104,15 @@ target_link_libraries (mcv4fwdd
 )
 
 
-install(TARGETS mcv4fwdd DESTINATION bin)
+install (TARGETS mcv4fwdd DESTINATION sbin)
+install (FILES ${SRC_DIR}/mcv4fwdd.service DESTINATION /lib/systemd/system)
+
+
+set (CPACK_GENERATOR "DEB")
+set (CPACK_DEBIAN_PACKAGE_MAINTAINER "Niels Penneman")
+set (CPACK_PACKAGE_VERSION_MAJOR 0)
+set (CPACK_PACKAGE_VERSION_MINOR 9)
+set (CPACK_PACKAGE_VERSION_PATCH 0)
+set (CPACK_DEBIAN_PACKAGE_RELEASE 1)
+
+include (CPack)
