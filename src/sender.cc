@@ -27,7 +27,6 @@
 #include <boost/bind.hpp>
 
 
-#ifndef NDEBUG
 namespace
 {
   std::string getOutInterface(int socket)
@@ -42,7 +41,6 @@ namespace
     return inet_ntoa(outInterfaceAddress);
   }
 }
-#endif
 
 
 Sender::Sender(boost::asio::io_service &ioService, address_t outInterfaceAddress):
