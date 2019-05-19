@@ -21,6 +21,7 @@
 
 #include "config/model/forwardingrule.h"
 
+#include <algorithm>
 #include <iterator>
 #include <iostream>
 

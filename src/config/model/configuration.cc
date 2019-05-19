@@ -21,6 +21,7 @@
 
 #include "config/model/configuration.h"
 
+#include <algorithm>
 #include <sstream>
 
 

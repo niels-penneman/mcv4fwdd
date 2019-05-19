@@ -21,6 +21,7 @@
 
 #include "config/model/serviceconfiguration.h"
 
+#include <algorithm>
 #include <cassert>
 #include <cstring>
 #include <stdexcept>

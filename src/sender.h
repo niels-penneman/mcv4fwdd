@@ -21,6 +21,7 @@
 
 #pragma once
 
+#include <algorithm>
 #include <queue>
 
 #include <boost/asio/io_service.hpp>
