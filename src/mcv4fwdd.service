@@ -10,6 +10,8 @@ PIDFile=/var/run/mcv4fwdd.pid
 User=root
 Group=root
 KillSignal=SIGINT
+Restart=on-failure
+RestartSec=30
 
 [Install]
 WantedBy=multi-user.target
