@@ -86,6 +86,7 @@ set_target_properties (parser
 )
 
 add_executable (mcv4fwdd
+  ${SRC_DIR}/application.cc
   ${SRC_DIR}/commandline.cc
   ${SRC_DIR}/forwarder.cc
   ${SRC_DIR}/mcv4fwdd.cc

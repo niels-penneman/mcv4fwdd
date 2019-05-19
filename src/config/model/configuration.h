@@ -22,6 +22,8 @@
 #pragma once
 
 #include <list>
+#include <set>
+#include <string>
 
 #include "config/model/serviceconfiguration.h"
 
@@ -47,12 +49,19 @@ struct config::model::Configuration
 
   void addServiceConfiguration(ServiceConfiguration &&serviceConfiguration);
 
+  /** Gets all interfaces used in the given configuration */
+  std::set<std::string> getInterfaces() const;
+
   service_configurations_t &getServiceConfigurations() noexcept;
 
   const service_configurations_t &getServiceConfigurations() const noexcept;
 
 
 private:
+
+  /** Throws an std::logic_error when the given interface name exceeds the system's maximum length */
+  static void checkInterfaceName(const std::string &interface);
+
 
   service_configurations_t m_services;
 };

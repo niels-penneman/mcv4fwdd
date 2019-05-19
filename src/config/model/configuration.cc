@@ -21,11 +21,43 @@
 
 #include "config/model/configuration.h"
 
+#include <sstream>
 
-std::ostream &operator <<(std::ostream &os, const config::model::Configuration &configuration)
+
+using Configuration = config::model::Configuration;
+
+
+std::ostream &operator <<(std::ostream &os, const Configuration &configuration)
 {
   os << "Configuration" << std::endl;
   std::for_each(std::begin(configuration.getServiceConfigurations()), std::end(configuration.getServiceConfigurations()),
     [&](auto &serviceConfiguration) { os << serviceConfiguration; });
   return os;
+}
+
+
+void Configuration::checkInterfaceName(const std::string &interface)
+{
+  if (interface.length() >= IFNAMSIZ)
+  {
+    std::ostringstream oss;
+    oss << "Interface name exceeds maximum length: " << interface;
+    throw std::logic_error(oss.str());
+  }
+}
+
+std::set<std::string> Configuration::getInterfaces() const
+{
+  std::set<std::string> interfaces;
+  for (const auto &serviceConfiguration: getServiceConfigurations())
+  {
+    for (const auto &forwardingRule: serviceConfiguration.getForwardingRules())
+    {
+      checkInterfaceName(forwardingRule.getFromInterface());
+      interfaces.insert(forwardingRule.getFromInterface());
+      checkInterfaceName(forwardingRule.getToInterface());
+      interfaces.insert(forwardingRule.getToInterface());
+    }
+  }
+  return std::move(interfaces);
 }

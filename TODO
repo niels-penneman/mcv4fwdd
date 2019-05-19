@@ -1,0 +1,1 @@
+* Handle interfaces going down & coming back up -- better to use netlink than current way of checking before startup
