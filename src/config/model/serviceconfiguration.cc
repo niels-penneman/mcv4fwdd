@@ -58,8 +58,9 @@ namespace
   }
 
   constexpr const WellKnownService WELL_KNOWN_SERVICES[] = {
-    { "mdns", ip(224,   0,   0, 251),  5353 },
-    { "ssdp", ip(239, 255, 255, 250),  1900 }
+    { "mdns",           ip(224,   0,   0, 251),  5353 },
+    { "ssdp",           ip(239, 255, 255, 250),  1900 },
+    { "ssdp_broadcast", ip(255, 255, 255, 255),  1900 }
   };
 }
 
