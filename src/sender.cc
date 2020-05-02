@@ -60,7 +60,7 @@ void Sender::beginSend()
   auto &item = m_queue.front();
 #ifndef NDEBUG
   std::cout << "Sending datagram of " << item.getLength() << " bytes to " << item.getMulticastEndpoint()
-    << " from interface " << getOutInterface(m_socket.native()) << ": " << std::endl
+    << " from interface " << getOutInterface(m_socket.native_handle()) << ": " << std::endl
     << std::string(item.getData(), item.getLength()) << std::endl;
 #endif
   m_socket.async_send_to(boost::asio::buffer(item.getData(), item.getLength()), item.getMulticastEndpoint(),
@@ -72,7 +72,7 @@ void Sender::endSend(const boost::system::error_code &error, std::size_t bytesTr
   if (error)
   {
     std::ostringstream msg;
-    msg << "send to " << getOutInterface(m_socket.native()) << " failed: " << error.message();
+    msg << "send to " << getOutInterface(m_socket.native_handle()) << " failed: " << error.message();
     throw std::runtime_error(msg.str());
   }
   auto bytesRequested = m_queue.front().getLength();

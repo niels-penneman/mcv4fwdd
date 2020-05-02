@@ -20,7 +20,7 @@
 
 
 %defines
-%error-verbose
+%define parse.error verbose
 %locations
 %pure-parser
 
