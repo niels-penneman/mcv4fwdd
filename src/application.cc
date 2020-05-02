@@ -108,7 +108,7 @@ namespace
       std::copy(std::begin(forwardingRule.getNetworks()), std::end(forwardingRule.getNetworks()),
         std::back_inserter(networks));
     }
-    return std::move(networks);
+    return networks;
   }
 
   InterfaceAddressMap getInterfaceAddresses()
@@ -136,7 +136,7 @@ namespace
       }
     }
     freeifaddrs(interfaceAddressList);
-    return std::move(map);
+    return map;
   }
 
   InterfaceAddressMap::const_iterator getInterfaceAddress(const InterfaceAddressMap &interfaceAddresses,

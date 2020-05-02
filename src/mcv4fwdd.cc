@@ -162,7 +162,7 @@ namespace
 #ifndef NDEBUG
     std::cout << *configuration << std::endl;
 #endif
-    return std::move(configuration);
+    return configuration;
   }
 }
 

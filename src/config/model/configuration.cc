@@ -60,5 +60,5 @@ std::set<std::string> Configuration::getInterfaces() const
       interfaces.insert(forwardingRule.getToInterface());
     }
   }
-  return std::move(interfaces);
+  return interfaces;
 }
